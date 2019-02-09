@@ -1,0 +1,5 @@
+查看与下载：
+https://wizardforcel.gitbooks.io/lcthw/content/ex4.html
+上面链接中的坑，应该两者结合后进行下载：
+https://blog.csdn.net/lkj345/article/details/50913895
+下载软件地址：http://valgrind.org/downloads/
