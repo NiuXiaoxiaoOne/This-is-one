@@ -3,16 +3,13 @@ void Temperatures(double F_value_random);
 int main(void)
 {
     double F_value; // 华氏温度
-    int circulate = 1; // 用于循环的变量
 
-    while (circulate == 1)
+    printf("Enter a degrees Fahrenheit of random: ");
+    while (scanf("%lf", &F_value) == 1)
     {
-        printf("Enter a degrees Fahrenheit of random: ");
-        scanf("%lf", &F_value);
         Temperatures(F_value);
 
-        printf("Enter 1 to re-execute the program, and enter 2 to exit the program: ");
-        scanf("%d", &circulate);
+        printf("Enter 1 to re-execute the program, and enter q to exit the program: ");
     }
     
     return 0;
