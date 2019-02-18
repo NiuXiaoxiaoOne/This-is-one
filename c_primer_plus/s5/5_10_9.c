@@ -1,4 +1,4 @@
-/* fiv_10_9.c -- 打印a-g */
+/* 5_10_9.c -- 打印a-g */
 #include <stdio.h>
 int main(void)
 {

@@ -1,4 +1,3 @@
-/* four_8_7.c -- */
 #include <stdio.h>
 #include <float.h>
 int main(void)

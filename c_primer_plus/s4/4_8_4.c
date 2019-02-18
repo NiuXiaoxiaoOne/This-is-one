@@ -1,4 +1,3 @@
-/* four_8_4.c -- */
 #include <stdio.h>
 int main(void)
 {
