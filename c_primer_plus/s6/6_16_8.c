@@ -6,17 +6,17 @@ int main(void)
     double once;
     double twice;
 
-    printf("请输入第一个小数: ");
-    scanf("%lf", &once);
-    printf("请输入第二个小数: ");
-    scanf("%lf", &twice);
+    printf("Enter a pair of numbers: ");
+    
+    while (scanf("%lf %lf", &once, &twice) == 2)
+    {
+        
+        if (((__builtin_types_compatible_p(typeof(once), double)) && \
+                (__builtin_types_compatible_p(typeof(twice), double))))
 
-    if (((__builtin_types_compatible_p(typeof(once), double)) && \
-            (__builtin_types_compatible_p(typeof(twice), double))))
-        printf("%.2lf\n", return_result(once, twice));
-    else
-        printf("输入错误，请输入一个小数!!!\n");
-
+            printf("%.2lf\n", return_result(once, twice));
+            printf("Enter a pair of numbers, nonnumeric exit: ");
+    }
     return 0;
 }
 
