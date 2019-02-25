@@ -1,8 +1,7 @@
-// x4.c -- 程序清单7.7
+// x4.c -- 程序清单7.7 统计输入的字符 行 单词数量
 #include <stdio.h>
 #include <ctype.h> // 为isspace()提供原型
 #include <stdbool.h> // 为bool true false提供定义
-#define STOP '|' // 终止符号
 int main(void)
 {   
     char c; // 读入字符
@@ -15,7 +14,7 @@ int main(void)
 
     printf("Enter text to be analyzed (| to terminate): \n");
     prev = '\n'; // 用于识别完整行
-    while ((c = getchar()) != STOP)
+    while ((c = getchar()) != EOF)
     {
         n_chars++; // 统计字符
         if (c == '\n')
