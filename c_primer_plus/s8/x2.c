@@ -3,7 +3,7 @@
 void display(char cr, int lines, int width);
 int main(void)
 {
-    int ch; // 待打印字符
+    char ch; // 待打印字符
     int rows, cols, ss; // 行数和列数
 
     printf("Enter a character and two integers: \n");

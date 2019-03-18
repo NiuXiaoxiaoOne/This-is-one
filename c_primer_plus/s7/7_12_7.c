@@ -1,8 +1,9 @@
 #include <stdio.h>
+#include <time.h>
 #define BASIC 10.0 // 每小时基本工资
 #define BASIC_UPPER 10.0 * 1.5 // 加班时每小时的工资
 #define TIME_UPPER 40.0 // 加班时间下限
-#define TIME_UPPER_BASIC 40.0 * BASIC_UPPER // 加班40个小时时的工资
+#define TIME_UPPER_BASIC 40.0 * BASIC // 加班40个小时时的工资
 #define MONEY1 300.0
 #define MONEY2 150.0
 #define TAX1 0.15 // 工资在300$内的税率
@@ -15,49 +16,27 @@
 int main(void)
 {
     double time_now; // 输入工作时间
-    double median_time_now; // 工作时间中间值
-    double money; // 金额
     double sum_money; // 金额和
     double tax_now; // 税金
-    double sum_tax_now; // 税金和
+    clock_t start_time, end_time;
 
     printf("Enter your job-time in a week: ");
     scanf("%lf", &time_now);
-    if (time_now < AMOUNT_TIME1)
-    {
+    start_time = clock();
+    if (time_now <= 40) // 求工资
         sum_money = time_now * BASIC;
-        sum_tax_now = money * TAX1;
-    }
-    else if (time_now <= AMOUNT_TIME2)
-    {
-        sum_money = MONEY1; // +30个小时的工资
-        sum_tax_now = MONEY1 * TAX1; // +30小时的税率
-        if (time_now >= TIME_UPPER) // 40小时以上的工作时间
-        {
-            money = 10 * BASIC; // +30-40间的工资
-            tax_now = money * TAX2;
-            sum_money += money;
-            sum_tax_now += tax_now;
-            money = (time_now - TIME_UPPER) * BASIC_UPPER; // 超过40小时后的工资
-            tax_now = money * TAX2; 
-            sum_money += money;
-            sum_tax_now += tax_now;
-        }
-        else if (time_now < TIME_UPPER)
-        {
-            money = (time_now - AMOUNT_TIME1) * BASIC;
-            tax_now = money * TAX2;
-            sum_money += money;
-            sum_tax_now += tax_now;
-        }
-    }
     else
-    {
-        sum_money = TIME_UPPER * BASIC + (time_now * BASIC_UPPER);
-        sum_tax_now = MONEY1_TAX + MONEY2_TAX + (time_now - AMOUNT_TIME2) * BASIC_UPPER * TAX3;
-    }
-    
+        sum_money = TIME_UPPER_BASIC + (time_now - TIME_UPPER) * BASIC_UPPER;
+    if (time_now <= 300) // 求税金
+        tax_now = sum_money * TAX1;
+    else if (time_now <= 450)
+        tax_now = MONEY1_TAX + (sum_money - MONEY1) * TAX2;
+    else
+        tax_now = MONEY1_TAX + MONEY2_TAX + (sum_money - MONEY1 - MONEY2) * TAX3;
+
     printf("job-time: %.2lf job-money-sum: %.2lf\n", time_now, sum_money);
-    printf("job-tax-sum: %.2lf job-profit: %.2lf\n", sum_tax_now, sum_money - sum_tax_now);
+    printf("job-tax-sum: %.2lf job-profit: %.2lf\n", tax_now, sum_money - tax_now);
+    end_time = clock();
+    printf("2: %f\n", (double)(end_time - start_time) / CLOCKS_PER_SEC);
     return 0;
 }
